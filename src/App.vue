@@ -1,29 +1,51 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+  <div id="app" class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <app-header :links="links" :page-title="pageTitle"></app-header>
+    <div class="mdl-layout__drawer">
+      <span class="mdl-layout-title">{{ pageTitle }}</span>
+      <app-nav :links="links"></app-nav>
     </div>
-    <router-view/>
+    <main class="mdl-layout__content">
+      <router-view/>
+    </main>
+    <app-footer :footer-text="footerText"></app-footer>
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+<script>
+import "material-design-lite";
+import AppFooter from "@/views/AppFooter";
+import AppHeader from "@/views/AppHeader";
+import AppNav from "@/views/AppNav";
+
+export default {
+  name: "App",
+  components: {
+    AppFooter,
+    AppHeader,
+    AppNav
+  },
+  data: function() {
+    return {
+      pageTitle: "Time Clock",
+      links: [
+        {
+          to: "/",
+          linkText: "Home"
+        },
+        {
+          to: "/about",
+          linkText: "About"
+        }
+      ],
+      footerText: "Made by: David Merris"
+    };
   }
-}
+};
+</script>
+
+<style lang="scss">
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+@import url("https://code.getmdl.io/1.2.1/material.blue-red.min.css");
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700");
 </style>
