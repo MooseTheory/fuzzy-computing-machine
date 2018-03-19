@@ -1,0 +1,44 @@
+{
+    "ok": "OK",
+    "cancel": "Cancel",
+    "header": {
+      "title": "punches",
+      "subtitle": "Track your time here"
+    },
+    "footer": {
+      "madeBy": "Made by"
+    },
+    "mainButtons": {
+      "punchInNow": "Punch In Now",
+      "punchOutNow": "Punch Out Now",
+      "createNewPunch": "Create New Punch",
+      "changeWeek": "Change Week",
+      "addedNewPunch": "Added new punch at {time} on {date}."
+    },
+    "weekOf": "Showing punches for the week of",
+    "weekChange": {
+      "title": "Change Displayed Week",
+      "ok": "OK",
+      "cancel": "Cancel"
+    },
+    "punch": {
+      "in": "in",
+      "out": "out"
+    },
+    "editDeleteButtons": {
+      "delete": "Delete",
+      "edit": "Edit"
+    },
+    "editTimeModal": {
+      "title": "Edit Punch Time"
+    },
+    "date": {
+      "totalHours": "Total Hours",
+      "toEight": "Hours Remaining",
+      "quittingTime": "Quitting Time"
+    },
+    "newPunch": {
+      "title": "Create New Punch"
+    }
+  }
+  

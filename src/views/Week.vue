@@ -1,7 +1,7 @@
 <template>
 <div id="weekView">
   <p>
-    Week of: <span class="date">{{ weekStartDate }}</span>
+    {{ $t("weekOf") }}: <span class="date">{{ weekStartDate }}</span>
   </p>
   <div class="mdl-grid">
     <display-date

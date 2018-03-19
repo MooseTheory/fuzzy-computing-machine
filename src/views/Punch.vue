@@ -1,6 +1,6 @@
 <template>
 <tr>
-  <td class="mdl-data-table__cell--non-numeric">{{ punchType }}</td>
+  <td class="mdl-data-table__cell--non-numeric">{{ punchText }}</td>
   <td class="mdl-data-table__cell--non-numeric">{{ formattedTime }}</td>
   <td class="mdl-data-table_-cell--non-numeric">
     <button class="mdl-button mdl-js-button mdl-button--icon" @click="onDelete">
@@ -22,6 +22,11 @@ export default {
   computed: {
     formattedTime() {
       return format(this.punchTime, "HH:mm:ss");
+    },
+    punchText() {
+      return this.punchType === "in"
+        ? this.$i18n.t("punch.in")
+        : this.$i18n.t("punch.out");
     }
   },
   methods: {

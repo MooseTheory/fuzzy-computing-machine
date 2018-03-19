@@ -1,14 +1,14 @@
 <template>
   <div id="app" class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-    <app-header :links="links" :page-title="pageTitle"></app-header>
+    <app-header :links="links" :page-title="$t('header.title')"></app-header>
     <div class="mdl-layout__drawer">
-      <span class="mdl-layout-title">{{ pageTitle }}</span>
+      <span class="mdl-layout-title">{{ $t('header.title') }}</span>
       <app-nav :links="links"></app-nav>
     </div>
     <main class="mdl-layout__content">
       <router-view/>
     </main>
-    <app-footer :footer-text="footerText"></app-footer>
+    <app-footer :footer-text="footerText" :author="author"></app-footer>
   </div>
 </template>
 
@@ -27,7 +27,6 @@ export default {
   },
   data: function() {
     return {
-      pageTitle: "Time Clock",
       links: [
         {
           to: "/",
@@ -38,7 +37,7 @@ export default {
           linkText: "About"
         }
       ],
-      footerText: "Made by: David Merris"
+      author: "David Merris"
     };
   }
 };

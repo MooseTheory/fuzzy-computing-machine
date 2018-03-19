@@ -1,7 +1,10 @@
 <template>
-<footer class="mdl-mini-footer">
-  <div class="mdl-mini-footer__left-section">
+<footer class="mdl-mega-footer">
+  <div class="mdl-mega-footer__top-section">
     <div class="mdl-logo">{{ footerText }}</div>
+  </div>
+  <div class="mdl-mega-footer__bottom-section">
+    <div class="mdl-logo">{{ $t("footer.madeBy") }}: {{ author }}</div>
   </div>
 </footer>
 </template>
@@ -9,7 +12,7 @@
 <script>
 export default {
   name: "AppFooter",
-  props: ["footerText"]
+  props: ["footerText", "author"]
 };
 </script>
 

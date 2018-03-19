@@ -17,9 +17,9 @@
           </punch>
         </tbody>
       </table>
-      <p>Hours worked: {{ hoursWorked }}</p>
-      <p v-if="timeToEight != 0">Time to 8 hours: {{ timeToEight }}</p>
-      <p v-if="isToday">Quitting time: {{ quittingTime }}</p>
+      <p>{{ $t("date.totalHours") }}: {{ hoursWorked }}</p>
+      <p v-if="timeToEight != 0">{{ $t("date.toEight") }}: {{ timeToEight }}</p>
+      <p v-if="isToday">{{ $t("date.quittingTime") }}: {{ quittingTime }}</p>
     </div>
     <div class="mdl-card__menu" v-if="isToday">
       <button class="mdl-button
