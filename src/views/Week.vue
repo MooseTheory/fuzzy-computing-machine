@@ -10,6 +10,14 @@
       :date="date" class="mdl-cell mdl-cell--5-col">
     </display-date>
   </div>
+  <button
+      class="mdc-fab material-icons"
+      aria-label="New Punch"
+      data-mdc-auto-init="MDCRipple">
+    <span class="mdc-fab__icon">
+      add
+    </span>
+  </button>
 </div>
 </template>
 
@@ -46,5 +54,6 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+@import "@material/button";
 </style>
