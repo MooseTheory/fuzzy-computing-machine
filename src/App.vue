@@ -37,6 +37,7 @@ export default {
           linkText: "About"
         }
       ],
+      footerText: "",
       author: "David Merris"
     };
   }
@@ -47,4 +48,6 @@ export default {
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 @import url("https://code.getmdl.io/1.2.1/material.blue-red.min.css");
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700");
+@import url("https://fonts.googleapis.com/css?family=Roboto+Mono:300,400,500");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css");
 </style>

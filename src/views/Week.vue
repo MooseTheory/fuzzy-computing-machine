@@ -11,12 +11,10 @@
     </display-date>
   </div>
   <button
-      class="mdc-fab material-icons"
-      aria-label="New Punch"
+      class="mdc-fab material-icons app-fab--absolute"
+      aria-label="Add"
       data-mdc-auto-init="MDCRipple">
-    <span class="mdc-fab__icon">
-      add
-    </span>
+    <span class="mdc-fab__icon">add</span>
   </button>
 </div>
 </template>
@@ -55,5 +53,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@material/button";
+@import "@material/fab/mdc-fab";
+
+.app-fab--absolute {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+}
+
+@media (min-width: 1024px) {
+  .app-fab--absolute {
+    bottom: 1.5rem;
+    right: 1.5rem;
+  }
+}
 </style>

@@ -48,7 +48,163 @@
         test: /\.vue$/,
         use: [
           {
-            loader: 'vue-loader'
+            loader: 'vue-loader',
+            options: {
+              preserveWhitespace: false,
+              template: {
+                doctype: 'html'
+              },
+              loaders: {
+                css: [
+                  {
+                    loader: 'vue-style-loader',
+                    options: {
+                      shadowMode: false,
+                      sourceMap: false
+                    }
+                  },
+                  {
+                    loader: 'css-loader',
+                    options: {
+                      sourceMap: false,
+                      minimize: false
+                    }
+                  }
+                ],
+                sass: [
+                  {
+                    loader: 'vue-style-loader',
+                    options: {
+                      shadowMode: false,
+                      sourceMap: false
+                    }
+                  },
+                  {
+                    loader: 'css-loader',
+                    options: {
+                      sourceMap: false,
+                      minimize: false
+                    }
+                  },
+                  {
+                    loader: 'sass-loader',
+                    options: {
+                      includePaths: [
+                        'C:\\Users\\Administrator\\dev\\pwa-clock\\node_modules'
+                      ],
+                      indentedSyntax: true,
+                      sourceMap: false
+                    }
+                  }
+                ],
+                scss: [
+                  {
+                    loader: 'vue-style-loader',
+                    options: {
+                      shadowMode: false,
+                      sourceMap: false
+                    }
+                  },
+                  {
+                    loader: 'css-loader',
+                    options: {
+                      sourceMap: false,
+                      minimize: false
+                    }
+                  },
+                  {
+                    loader: 'sass-loader',
+                    options: {
+                      includePaths: [
+                        'C:\\Users\\Administrator\\dev\\pwa-clock\\node_modules'
+                      ],
+                      sourceMap: false
+                    }
+                  }
+                ],
+                less: [
+                  {
+                    loader: 'vue-style-loader',
+                    options: {
+                      shadowMode: false,
+                      sourceMap: false
+                    }
+                  },
+                  {
+                    loader: 'css-loader',
+                    options: {
+                      sourceMap: false,
+                      minimize: false
+                    }
+                  },
+                  {
+                    loader: 'less-loader',
+                    options: {
+                      sourceMap: false
+                    }
+                  }
+                ],
+                stylus: [
+                  {
+                    loader: 'vue-style-loader',
+                    options: {
+                      shadowMode: false,
+                      sourceMap: false
+                    }
+                  },
+                  {
+                    loader: 'css-loader',
+                    options: {
+                      sourceMap: false,
+                      minimize: false
+                    }
+                  },
+                  {
+                    loader: 'stylus-loader',
+                    options: {
+                      sourceMap: false
+                    }
+                  }
+                ],
+                styl: [
+                  {
+                    loader: 'vue-style-loader',
+                    options: {
+                      shadowMode: false,
+                      sourceMap: false
+                    }
+                  },
+                  {
+                    loader: 'css-loader',
+                    options: {
+                      sourceMap: false,
+                      minimize: false
+                    }
+                  },
+                  {
+                    loader: 'stylus-loader',
+                    options: {
+                      sourceMap: false
+                    }
+                  }
+                ],
+                js: [
+                  {
+                    loader: 'cache-loader',
+                    options: {
+                      cacheDirectory: 'C:\\Users\\Administrator\\dev\\pwa-clock\\node_modules\\.cache\\cache-loader'
+                    }
+                  },
+                  {
+                    loader: 'babel-loader'
+                  }
+                ]
+              },
+              cssSourceMap: false,
+              cssModules: {
+                localIdentName: '[name]_[local]__[hash:base64:5]'
+              }
+            }
           }
         ]
       },
@@ -224,6 +380,9 @@
           {
             loader: 'sass-loader',
             options: {
+              includePaths: [
+                'C:\\Users\\Administrator\\dev\\pwa-clock\\node_modules'
+              ],
               indentedSyntax: true,
               sourceMap: false
             }
@@ -259,6 +418,9 @@
           {
             loader: 'sass-loader',
             options: {
+              includePaths: [
+                'C:\\Users\\Administrator\\dev\\pwa-clock\\node_modules'
+              ],
               sourceMap: false
             }
           }
@@ -423,6 +585,9 @@
           {
             loader: 'sass-loader',
             options: {
+              includePaths: [
+                'C:\\Users\\Administrator\\dev\\pwa-clock\\node_modules'
+              ],
               indentedSyntax: true,
               sourceMap: false
             }
@@ -458,6 +623,9 @@
           {
             loader: 'sass-loader',
             options: {
+              includePaths: [
+                'C:\\Users\\Administrator\\dev\\pwa-clock\\node_modules'
+              ],
               sourceMap: false
             }
           }
