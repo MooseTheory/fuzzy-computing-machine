@@ -4,6 +4,7 @@ import router from "./router";
 import { createI18n } from "./i18n";
 import store from "./store";
 import "./registerServiceWorker";
+import "material-components-web";
 
 Vue.config.productionTip = false;
 

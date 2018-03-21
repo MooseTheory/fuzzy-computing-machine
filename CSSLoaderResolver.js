@@ -5,6 +5,7 @@
  *
  * Modified by Yuxi Evan You
  */
+/* eslint-disable */
 
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const path = require("path");

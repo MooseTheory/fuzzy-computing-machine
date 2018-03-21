@@ -1,34 +1,36 @@
 <template>
 <div v-if="punches.length > 0" class="column">
-  <div class="mdl-card mdl-shadow--2dp">
-    <div class="mdl-card__title">
-      <h2 class="mdl-card__title-text">
+  <div class="mdc-card">
+    <div class="card-primary">
+      <h2 class="mdc-typography--title">
         {{ formattedDate }}
       </h2>
     </div>
-    <div class="mdl-card__supporting-text">
-      <table class="mdl-data-table mdl-js-data-table">
-        <tbody>
-          <punch
-            v-for="(punch, index) in punches"
-            :key="index"
-            :punch-type="punch.punchType"
-            :punch-time="punch.punchTime">
-          </punch>
-        </tbody>
-      </table>
-      <p>{{ $t("date.totalHours") }}: {{ hoursWorked }}</p>
-      <p v-if="timeToEight != 0">{{ $t("date.toEight") }}: {{ timeToEight }}</p>
-      <p v-if="isToday">{{ $t("date.quittingTime") }}: {{ quittingTime }}</p>
-    </div>
-    <div class="mdl-card__menu" v-if="isToday">
-      <button class="mdl-button
-          mdl-js-button
-          mdl-button--fab
-          mdl-button--mini-fab
-          mdl-button--colored">
-        <i class="material-icons">add</i>
-      </button>
+    <hr class="mdc-list-divider">
+    <div class="card-secondary">
+      <ul class="mdc-list mdc-list--avatar-list mdc-list--non-interactive">
+        <punch
+          v-for="(punch, index) in punches"
+          :key="index"
+          :punch-type="punch.punchType"
+          :punch-time="punch.punchTime">
+        </punch>
+      </ul>
+      <hr class="mdc-list-divider">
+      <ul class="mdc-list mdc-list--dense mdc-list--non-interactive">
+        <li class="mdc-typography--body1 mdc-list-item">
+          {{ $t("date.totalHours") }}
+          <span class="mdc-list-item__meta">{{ hoursWorked }}</span>
+        </li>
+        <li class="mdc-typography--body1 mdc-list-item" v-if="timeToEight != 0">
+          {{ $t("date.toEight") }}
+          <span class="mdc-list-item__meta">{{ timeToEight }}</span>
+        </li>
+        <li class="mdc-typography--body1 mdc-list-item" v-if="isToday">
+          {{ $t("date.quittingTime") }}
+          <span class="mdc-list-item__meta">{{ quittingTime }}</span>
+        </li>
+      </ul>
     </div>
   </div>
 </div>
@@ -121,4 +123,10 @@ export default {
 table {
   width: 100%;
 }
+</style>
+
+<style lang="scss" scoped>
+@import "@material/card/mdc-card";
+@import "@material/list/mdc-list";
+@import "@material/typography/mdc-typography";
 </style>

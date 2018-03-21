@@ -1,19 +1,20 @@
 <template>
 <div id="weekView">
-  <p>
+  <span class="mdc-typography--title">
     {{ $t("weekOf") }}: <span class="date">{{ weekStartDate }}</span>
-  </p>
-  <div class="mdl-grid">
-    <display-date
-      v-for="(date, index) in curWeekDates"
-      :key="index"
-      :date="date" class="mdl-cell mdl-cell--5-col">
-    </display-date>
+  </span>
+  <div class="mdc-layout-grid">
+    <div class="mdc-layout-grid__inner">
+      <display-date
+        v-for="(date, index) in curWeekDates"
+        :key="index"
+        :date="date" class="mdc-layout-grid__cell--span-5">
+      </display-date>
+    </div>
   </div>
   <button
       class="mdc-fab material-icons app-fab--absolute"
-      aria-label="Add"
-      data-mdc-auto-init="MDCRipple">
+      aria-label="Add">
     <span class="mdc-fab__icon">add</span>
   </button>
 </div>
@@ -21,6 +22,7 @@
 
 <script>
 import { addDays, format, startOfWeek } from "date-fns";
+import { MDCRipple } from "@material/ripple";
 
 import DisplayDate from "@/views/DisplayDate";
 
@@ -48,11 +50,15 @@ export default {
       }
       return weekDates;
     }
+  },
+  mounted() {
+    MDCRipple.attachTo(document.querySelector(".app-fab--absolute"));
   }
 };
 </script>
 
 <style lang="scss" scoped>
+@import "@material/layout-grid/mdc-layout-grid";
 @import "@material/fab/mdc-fab";
 
 .app-fab--absolute {

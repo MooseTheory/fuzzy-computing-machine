@@ -27,6 +27,14 @@ export default {
     {
       punchType: "in",
       punchTime: "2018-03-22T09:45:00-04:00"
+    },
+    {
+      punchType: "out",
+      punchTime: "2018-03-22T18:45:00-04:00"
+    },
+    {
+      punchType: "in",
+      punchTime: "2018-03-23T09:45:00-04:00"
     }
   ]
 };

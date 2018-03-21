@@ -23,7 +23,9 @@
     },
     "punch": {
       "in": "in",
-      "out": "out"
+      "out": "out",
+      "delete": "delete",
+      "edit": "edit"
     },
     "editDeleteButtons": {
       "delete": "Delete",
@@ -41,4 +43,3 @@
       "title": "Create New Punch"
     }
   }
-  

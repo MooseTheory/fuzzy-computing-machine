@@ -1,20 +1,27 @@
 <template>
-<tr>
-  <td class="mdl-data-table__cell--non-numeric">{{ punchText }}</td>
-  <td class="mdl-data-table__cell--non-numeric">{{ formattedTime }}</td>
-  <td class="mdl-data-table_-cell--non-numeric">
-    <button class="mdl-button mdl-js-button mdl-button--icon" @click="onDelete">
-      <i class="material-icons">delete_forever</i>
-    </button>
-    <button class="mdl-button mdl-js-button mdl-button--icon" @click="onEdit">
-      <i class="material-icons">mode_edit</i>
-    </button>
-  </td>
-</tr>
+<li class="mdc-list-item">
+  <span class="mdc-list-item__graphic">{{ punchText }}</span>
+  <span class="timeStamp">{{ formattedTime }}</span>
+  <div class="mdc-list-item__meta mdc-chip-set">
+    <div class="mdc-chip" ref="deleteChip" tabindex="0" @click="onDelete">
+      <i class="material-icons mdc-chip__icon mdc-chip__icon--leading">
+        delete_forever
+      </i>
+      <div class="mdc-chip__text">{{ $t("punch.delete") }}</div>
+    </div>
+    <div class="mdc-chip" ref="editChip" tabindex="0" @click="onEdit">
+      <i class="material-icons mdc-chip__icon mdc-chip__icon--leading">
+        mode_edit
+      </i>
+      <div class="mdc-chip__text">{{ $t("punch.edit") }}</div>
+    </div>
+  </div>
+</li>
 </template>
 
 <script>
 import { format } from "date-fns";
+import { MDCRipple } from "@material/ripple";
 
 export default {
   name: "Punch",
@@ -36,9 +43,16 @@ export default {
     onEdit: function() {
       this.$emit("edit", this.punchTime);
     }
+  },
+  mounted() {
+    MDCRipple.attachTo(this.$refs.deleteChip);
+    MDCRipple.attachTo(this.$refs.editChip);
   }
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+@import "@material/list/mdc-list";
+@import "@material/chips/mdc-chips";
+@import "@material/button/mdc-button";
 </style>
