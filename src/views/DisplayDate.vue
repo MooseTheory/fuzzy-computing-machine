@@ -13,7 +13,9 @@
           v-for="(punch, index) in punches"
           :key="index"
           :punch-type="punch.punchType"
-          :punch-time="punch.punchTime">
+          :punch-time="punch.punchTime"
+          @delete="deletePunch"
+          @edit="editPunch">
         </punch>
       </ul>
       <hr class="mdc-list-divider">
@@ -46,7 +48,6 @@ import {
 } from "date-fns";
 
 import Punch from "@/views/Punch";
-import data from "@/store/data.js";
 
 export default {
   name: "DisplayDate",
@@ -57,7 +58,7 @@ export default {
   data: function() {
     var me = this;
     return {
-      punches: data.punches.filter(function(value) {
+      punches: this.$store.state.punches.filter(function(value) {
         return isSameDay(me.date, value.punchTime);
       })
     };
@@ -66,7 +67,9 @@ export default {
     precisionRound(number, precision) {
       var factor = Math.pow(10, precision);
       return Math.round(number * factor) / factor;
-    }
+    },
+    deletePunch() {},
+    editPunch() {}
   },
   computed: {
     formattedDate() {

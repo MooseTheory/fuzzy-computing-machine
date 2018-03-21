@@ -1,4 +1,4 @@
-export default {
+export const initialPunches = {
   punches: [
     {
       punchType: "in",
