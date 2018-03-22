@@ -14,8 +14,8 @@
           :key="index"
           :punch-type="punch.punchType"
           :punch-time="punch.punchTime"
-          @delete="deletePunch"
-          @edit="editPunch">
+          @delete="doDeletePunch"
+          @edit="doEditPunch">
         </punch>
       </ul>
       <hr class="mdc-list-divider">
@@ -35,6 +35,30 @@
       </ul>
     </div>
   </div>
+  <div id="edit-mdc-dialog" class="mdc-dialog" role="dialog" ref="editDialog">
+    <div class="mdc-dialog__surface">
+      <header class="mdc-dialog__header">
+        <h2 id="edit-dialog-label" class="mdc-dialog__header__title">
+          {{ $t("editTimeModal.title") }}
+        </h2>
+      </header>
+      <section id="edit-dialog-description" class="mdc-dialog__body">
+        EDIT!
+      </section>
+      <footer class="mdc-dialog__footer">
+        <button
+            type="button"
+            class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--cancel">
+          Cancel
+        </button>
+        <button
+            type="button"
+            class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--accept">
+          Accept
+        </button>
+      </footer>
+    </div>
+  </div>
 </div>
 </template>
 
@@ -46,6 +70,8 @@ import {
   endOfDay,
   addHours
 } from "date-fns";
+import { mapMutations } from "vuex";
+import { MDCDialog } from "@material/dialog";
 
 import Punch from "@/views/Punch";
 
@@ -56,22 +82,40 @@ export default {
   },
   props: ["date"],
   data: function() {
-    var me = this;
     return {
-      punches: this.$store.state.punches.filter(function(value) {
-        return isSameDay(me.date, value.punchTime);
-      })
+      dialog: undefined
     };
   },
   methods: {
+    ...mapMutations(["deletePunch"]),
     precisionRound(number, precision) {
       var factor = Math.pow(10, precision);
       return Math.round(number * factor) / factor;
     },
-    deletePunch() {},
-    editPunch() {}
+    doDeletePunch(targetDate) {
+      this.deletePunch({
+        timeStamp: targetDate
+      });
+    },
+    doEditPunch() {
+      if (this.dialog !== undefined) {
+        this.dialog.show();
+      }
+    },
+    editConfirm() {
+      console.log("Confirm!");
+    },
+    editCancel() {
+      console.log("Cancel!");
+    }
   },
   computed: {
+    punches() {
+      var me = this;
+      return this.$store.state.punches.filter(function(value) {
+        return isSameDay(me.date, value.punchTime);
+      });
+    },
     formattedDate() {
       return format(this.date, "DD MMMM YYYY");
     },
@@ -118,6 +162,18 @@ export default {
       var quittingTime = addHours(now, this.timeToEight);
       return format(quittingTime, "HH:mm");
     }
+  },
+  mounted() {
+    if (this.$refs.editDialog !== undefined) {
+      var me = this;
+      this.dialog = MDCDialog.attachTo(this.$refs.editDialog);
+      this.dialog.listen("MDCDialog:accept", function() {
+        me.editConfirm();
+      });
+      this.dialog.listen("MDCDialog:cancel", function() {
+        me.editConfirm();
+      });
+    }
   }
 };
 </script>
@@ -129,7 +185,9 @@ table {
 </style>
 
 <style lang="scss" scoped>
+@import "@material/button/mdc-button";
 @import "@material/card/mdc-card";
+@import "@material/dialog/mdc-dialog";
 @import "@material/list/mdc-list";
 @import "@material/typography/mdc-typography";
 </style>

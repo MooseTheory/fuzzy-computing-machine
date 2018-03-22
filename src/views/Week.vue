@@ -14,7 +14,8 @@
   </div>
   <button
       class="mdc-fab material-icons app-fab--absolute"
-      aria-label="Add">
+      aria-label="Add"
+      @click="createNewPunch">
     <span class="mdc-fab__icon">add</span>
   </button>
 </div>
@@ -23,6 +24,7 @@
 <script>
 import { addDays, format, startOfWeek } from "date-fns";
 import { MDCRipple } from "@material/ripple";
+import { mapGetters, mapMutations } from "vuex";
 
 import DisplayDate from "@/views/DisplayDate";
 
@@ -49,6 +51,16 @@ export default {
         weekDates.push(nextDate);
       }
       return weekDates;
+    }
+  },
+  methods: {
+    ...mapGetters(["lastPunchType"]),
+    ...mapMutations(["newPunch"]),
+    createNewPunch() {
+      this.newPunch({
+        timeStamp: new Date(),
+        type: this.lastPunchType() === "in" ? "out" : "in"
+      });
     }
   },
   mounted() {

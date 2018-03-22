@@ -23,7 +23,7 @@ export const initialPunches = {
     {
       punchType: "out",
       punchTime: "2018-03-21T18:18:00-04:00"
-    },
+    } /*,
     {
       punchType: "in",
       punchTime: "2018-03-22T09:45:00-04:00"
@@ -35,6 +35,6 @@ export const initialPunches = {
     {
       punchType: "in",
       punchTime: "2018-03-23T09:45:00-04:00"
-    }
+    }*/
   ]
 };

@@ -1,4 +1,4 @@
-import { compareAsc, isEqual } from "date-fns";
+import { compareAsc, isEqual, parse } from "date-fns";
 import { initialPunches } from "./data";
 
 export const state = {
@@ -19,11 +19,10 @@ export const mutations = {
     }
   },
   deletePunch(state, { timeStamp }) {
-    if (timeStamp instanceof Date) {
-      var targetIndex = state.punches.findIndex(function(e) {
-        return isEqual(e.punchTime, timeStamp);
-      });
-      state.punches.splice(targetIndex, 1);
-    }
+    var parsedStamp = parse(timeStamp);
+    var targetIndex = state.punches.findIndex(function(e) {
+      return isEqual(parse(e.punchTime), parsedStamp);
+    });
+    state.punches.splice(targetIndex, 1);
   }
 };
