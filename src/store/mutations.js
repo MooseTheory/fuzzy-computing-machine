@@ -24,5 +24,19 @@ export const mutations = {
       return isEqual(parse(e.punchTime), parsedStamp);
     });
     state.punches.splice(targetIndex, 1);
+  },
+  editPunch(state, { oldStamp, newStamp }) {
+    var targetIndex = state.punches.findIndex(function(e) {
+      return isEqual(parse(e.punchTime), oldStamp);
+    });
+    var punchType = state.punches[targetIndex].punchType;
+    state.punches.splice(targetIndex, 1);
+    state.punches.push({
+      punchTime: newStamp,
+      punchType: punchType
+    });
+    state.punches.sort(function(a, b) {
+      return compareAsc(a.puncTime, b.punchTime);
+    });
   }
 };

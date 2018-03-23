@@ -6,6 +6,8 @@ import store from "./store";
 import "./registerServiceWorker";
 import "material-components-web";
 
+import "material-datetime-picker/dist/material-datetime-picker.css";
+
 Vue.config.productionTip = false;
 
 const i18n = createI18n();

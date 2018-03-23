@@ -8,7 +8,8 @@
       <display-date
         v-for="(date, index) in curWeekDates"
         :key="index"
-        :date="date" class="mdc-layout-grid__cell--span-5">
+        :date="date" class="mdc-layout-grid__cell--span-5"
+        @editPunch="doEditPunch">
       </display-date>
     </div>
   </div>
@@ -18,24 +19,39 @@
       @click="createNewPunch">
     <span class="mdc-fab__icon">add</span>
   </button>
+  <div id="edit-mdc-dialog" class="mdc-dialog" role="dialog" ref="editDialog">
+    <edit-dialog
+        ref="editDialog"
+        :targetStamp="editStamp"
+        @editTimeAccept="editConfirm"
+        @editTimeInvalid="editInvalid">
+    </edit-dialog>
+  </div>
 </div>
 </template>
 
 <script>
-import { addDays, format, startOfWeek } from "date-fns";
+import { addDays, format, parse, startOfWeek } from "date-fns";
+import { MDCDialog } from "@material/dialog";
 import { MDCRipple } from "@material/ripple";
 import { mapGetters, mapMutations } from "vuex";
 
 import DisplayDate from "@/views/DisplayDate";
+import EditDialog from "@/views/EditDialog";
 
 export default {
   name: "Week",
   components: {
-    DisplayDate
+    DisplayDate,
+    EditDialog
   },
   data: function() {
     return {
-      passedDate: this.$route.params.date ? this.$route.params.date : new Date()
+      dialog: undefined,
+      passedDate: this.$route.params.date
+        ? this.$route.params.date
+        : new Date(),
+      editStamp: new Date()
     };
   },
   computed: {
@@ -61,16 +77,52 @@ export default {
         timeStamp: new Date(),
         type: this.lastPunchType() === "in" ? "out" : "in"
       });
+    },
+    doEditPunch(timeStamp) {
+      if (typeof timeStamp === Date) {
+        this.editStamp = timeStamp;
+      } else {
+        this.editStamp = parse(timeStamp);
+      }
+      if (this.dialog !== undefined) {
+        this.dialog.show();
+      } else {
+        if (this.$refs.editDialog !== undefined) {
+          var me = this;
+          this.dialog = MDCDialog.attachTo(this.$refs.editDialog);
+          this.dialog.listen("MDCDialog:cancel", function() {
+            me.editCancel();
+          });
+        }
+        this.dialog.show();
+      }
+    },
+    editConfirm(newTime) {
+      console.log("Confirm!", newTime);
+    },
+    editCancel() {
+      console.log("Cancel!");
+    },
+    editInvalid() {
+      console.log("Edit was not valid.");
     }
   },
   mounted() {
     MDCRipple.attachTo(document.querySelector(".app-fab--absolute"));
+    if (this.$refs.editDialog !== undefined) {
+      var me = this;
+      this.dialog = MDCDialog.attachTo(this.$refs.editDialog);
+      this.dialog.listen("MDCDialog:cancel", function() {
+        me.editCancel();
+      });
+    }
   }
 };
 </script>
 
 <style lang="scss" scoped>
 @import "@material/layout-grid/mdc-layout-grid";
+@import "@material/dialog/mdc-dialog";
 @import "@material/fab/mdc-fab";
 
 .app-fab--absolute {

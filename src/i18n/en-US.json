@@ -27,10 +27,6 @@
       "delete": "delete",
       "edit": "edit"
     },
-    "editDeleteButtons": {
-      "delete": "Delete",
-      "edit": "Edit"
-    },
     "editTimeModal": {
       "title": "Edit Punch Time"
     },
