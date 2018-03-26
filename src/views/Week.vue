@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import { addDays, format, parse, startOfWeek } from "date-fns";
+import { addDays, format, isEqual, parse, startOfWeek } from "date-fns";
 import { MDCDialog } from "@material/dialog";
 import { MDCRipple } from "@material/ripple";
 import { mapGetters, mapMutations } from "vuex";
@@ -71,7 +71,7 @@ export default {
   },
   methods: {
     ...mapGetters(["lastPunchType"]),
-    ...mapMutations(["newPunch"]),
+    ...mapMutations(["newPunch", "editPunch"]),
     createNewPunch() {
       this.newPunch({
         timeStamp: new Date(),
@@ -98,7 +98,13 @@ export default {
       }
     },
     editConfirm(newTime) {
-      console.log("Confirm!", newTime);
+      var oldTime = this.editStamp;
+      if (!isEqual(newTime, this.editStamp)) {
+        this.editPunch({
+          oldStamp: oldTime,
+          newStamp: newTime
+        });
+      }
     },
     editCancel() {
       console.log("Cancel!");
